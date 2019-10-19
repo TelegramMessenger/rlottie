@@ -536,6 +536,10 @@ static void gray_render_line(RAS_ARG_ TPos to_x, TPos to_y)
 
     dx = to_x - ras.x;
     dy = to_y - ras.y;
+    
+    if (SW_FT_ABS(dx) > 10000000 || SW_FT_ABS(dy) > 10000000) {
+         goto End;
+    }
 
     fx1 = ras.x - SUBPIXELS(ex1);
     fy1 = ras.y - SUBPIXELS(ey1);
