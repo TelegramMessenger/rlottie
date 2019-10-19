@@ -925,9 +925,10 @@ std::shared_ptr<LOTData> LottieParserImpl::parseLayer(bool record)
         } else if (0 == strcmp(key, "bm")) {
             layer->mBlendMode = getBlendMode();
         } else if (0 == strcmp(key, "ks")) {
-            RAPIDJSON_ASSERT(PeekType() == kObjectType);
-            EnterObject();
-            layer->mTransform = parseTransformObject(ddd);
+            if (PeekType() == kObjectType) {
+                EnterObject();
+                layer->mTransform = parseTransformObject(ddd);
+            }
         } else if (0 == strcmp(key, "shapes")) {
             parseShapesAttr(layer);
         } else if (0 == strcmp(key, "w")) {
