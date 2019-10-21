@@ -313,7 +313,7 @@ bool LottieParserImpl::EnterObject()
 {
     if (st_ != kEnteringObject) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return false;
     }
 
@@ -325,7 +325,7 @@ bool LottieParserImpl::EnterArray()
 {
     if (st_ != kEnteringArray) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return false;
     }
 
@@ -355,7 +355,7 @@ const char *LottieParserImpl::NextObjectKey()
     }
 
     if (st_ != kExitingObject) {
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         st_ = kError;
         return nullptr;
     }
@@ -379,7 +379,7 @@ bool LottieParserImpl::NextArrayValue()
     }
 
     if (st_ == kError || st_ == kHasKey) {
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         st_ = kError;
         return false;
     }
@@ -391,7 +391,7 @@ int LottieParserImpl::GetInt()
 {
     if (st_ != kHasNumber || !v_.IsInt()) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return 0;
     }
 
@@ -404,7 +404,7 @@ double LottieParserImpl::GetDouble()
 {
     if (st_ != kHasNumber) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return 0.;
     }
 
@@ -417,7 +417,7 @@ bool LottieParserImpl::GetBool()
 {
     if (st_ != kHasBool) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return false;
     }
 
@@ -440,7 +440,7 @@ const char *LottieParserImpl::GetString()
 {
     if (st_ != kHasString) {
         st_ = kError;
-        RAPIDJSON_ASSERT(false);
+        //RAPIDJSON_ASSERT(false);
         return nullptr;
     }
 
@@ -457,7 +457,7 @@ void LottieParserImpl::SkipOut(int depth)
         } else if (st_ == kExitingArray || st_ == kExitingObject) {
             --depth;
         } else if (st_ == kError) {
-            RAPIDJSON_ASSERT(false);
+            //RAPIDJSON_ASSERT(false);
             return;
         }
 
