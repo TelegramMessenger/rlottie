@@ -1136,7 +1136,8 @@ std::shared_ptr<LOTData> LottieParserImpl::parseGroupObject()
                 RAPIDJSON_ASSERT(PeekType() == kObjectType);
                 parseObject(group);
             }
-            if (group->mChildren.back()->mType == LOTData::Type::Transform) {
+            if (!group->mChildren.empty()
+                && group->mChildren.back()->mType == LOTData::Type::Transform) {
                 group->mTransform = std::static_pointer_cast<LOTTransformData>(
                     group->mChildren.back());
                 group->mChildren.pop_back();
