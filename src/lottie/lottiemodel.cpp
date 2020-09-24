@@ -184,8 +184,11 @@ void LOTGradient::populate(VGradientStops &stops, int frameNo)
     LottieGradient gradData = mGradient.value(frameNo);
     auto            size = gradData.mGradient.size();
     float *        ptr = gradData.mGradient.data();
+    if (!ptr) {
+        return;
+    }
     int            colorPoints = mColorPoints;
-    if (colorPoints < 0 || colorPoints * 4 > size) {  // for legacy bodymovin (ref: lottie-android)
+    if (colorPoints < 0 || colorPoints > size / 4) {  // for legacy bodymovin (ref: lottie-android)
         colorPoints = int(size / 4);
     }
     auto    opacityArraySize = size - colorPoints * 4;
