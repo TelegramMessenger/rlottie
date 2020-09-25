@@ -77,6 +77,9 @@ void VDrawable::setDashInfo(std::vector<float> &dashInfo)
     if (!hasChanged) return;
 
     mStroke.mDash = dashInfo;
+    if (mStroke.mDash.size() == 1) {
+        mStroke.mDash.push_back(20);
+    }
 
     mFlag |= DirtyState::Path;
 }
