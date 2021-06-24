@@ -840,10 +840,10 @@ static void gray_render_cubic(RAS_ARG_ const SW_FT_Vector* control1,
         }
 
     Split:
+        if (arc + 7 > ras.bez_stack + 32 * 3 + 1) return;
+
         gray_split_cubic(arc);
         arc += 3;
-
-        if (arc + 4 > ras.bez_stack + 32 * 3 + 1) return;
 
         continue;
 
