@@ -19,6 +19,7 @@
 #ifndef LOTTIEPARSER_H
 #define LOTTIEPARSER_H
 
+#include "rlottie.h"
 #include "lottiemodel.h"
 #include <memory>
 
@@ -28,7 +29,7 @@ public:
     ~LottieParser();
     LottieParser(char *str, const char *dir_path,
                  const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-                     &colorReplacements = {});
+                     &colorReplacements = {}, rlottie::FitzModifier fitzModifier = rlottie::FitzModifier::None);
     std::shared_ptr<LOTModel> model();
 private:
    std::unique_ptr<LottieParserImpl>  d;

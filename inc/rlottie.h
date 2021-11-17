@@ -43,6 +43,15 @@ struct LOTLayerNode;
 
 namespace rlottie {
 
+enum class FitzModifier {
+    None,
+    Type12,
+    Type3,
+    Type4,
+    Type5,
+    Type6
+};
+
 /**
  *  @brief Configures rlottie model cache policy.
  *
@@ -293,7 +302,7 @@ public:
     loadFromData(std::string jsonData, const std::string &key,
                  const std::string &resourcePath="", bool cachePolicy=true,
 	             const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-				     &colorReplacements = {});
+				     &colorReplacements = {}, FitzModifier fitzModifier = FitzModifier::None);
 
     /**
      *  @brief Returns default framerate of the Lottie resource.

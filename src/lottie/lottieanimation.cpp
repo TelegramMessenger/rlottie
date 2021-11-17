@@ -242,7 +242,7 @@ std::unique_ptr<Animation> Animation::loadFromData(
     std::string jsonData, const std::string &key,
     const std::string &resourcePath, bool cachePolicy,
     const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-        &colorReplacements)
+        &colorReplacements, FitzModifier fitzModifier)
 {
     if (jsonData.empty()) {
         vWarning << "jason data is empty";
@@ -252,7 +252,7 @@ std::unique_ptr<Animation> Animation::loadFromData(
     LottieLoader loader;
     if (loader.loadFromData(std::move(jsonData), key,
                             (resourcePath.empty() ? " " : resourcePath),
-                            cachePolicy, colorReplacements)) {
+                            cachePolicy, colorReplacements, fitzModifier)) {
         auto animation = std::unique_ptr<Animation>(new Animation);
         animation->d->init(loader.model());
         return animation;

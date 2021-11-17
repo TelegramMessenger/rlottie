@@ -23,6 +23,8 @@
 #include<memory>
 #include<vector>
 
+#include "rlottie.h"
+
 class LOTModel;
 class LottieLoader
 {
@@ -32,7 +34,7 @@ public:
    bool loadFromData(std::string &&jsonData, const std::string &key,
                      const std::string &resourcePath, bool cachePolicy,
                      const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-                         &colorReplacements);
+                         &colorReplacements, rlottie::FitzModifier fitzModifier);
    std::shared_ptr<LOTModel> model();
 private:  
    std::shared_ptr<LOTModel>    mModel;
