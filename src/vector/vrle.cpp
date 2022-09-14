@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <array>
 #include <cstdlib>
+#include <limits>
 #include <vector>
 #include "vdebug.h"
 #include "vglobal.h"
