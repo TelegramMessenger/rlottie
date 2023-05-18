@@ -306,7 +306,7 @@ public:
     static std::unique_ptr<Animation>
     loadFromData(std::string jsonData, const std::string &key,
                  const std::string &resourcePath="", bool cachePolicy=true,
-	             const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements = {},
+                 const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements = {},
                  FitzModifier fitzModifier = FitzModifier::None,
                  ParserColorFormat colorFormat = ParserColorFormat::Rgb);
 
