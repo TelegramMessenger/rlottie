@@ -170,11 +170,13 @@ protected:
 class LottieParserImpl : public LookaheadParserHandler {
 public:
     LottieParserImpl(char *str, const char *dir_path,
-                     const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-                         &colorReplacements, rlottie::FitzModifier fitzModifier)
+                     const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements,
+                     rlottie::FitzModifier fitzModifier,
+                     rlottie::ParserColorFormat colorFormat)
         : LookaheadParserHandler(str),
           mColorReplacements(colorReplacements),
           mFitzModifier(fitzModifier),
+          mParserColorFormat(colorFormat),
           mDirPath(dir_path)
     {
     }
@@ -275,6 +277,7 @@ protected:
     std::vector<std::pair<std::uint32_t, std::uint32_t>>
         mColorReplacements;
     const rlottie::FitzModifier                         mFitzModifier;
+    const rlottie::ParserColorFormat                    mParserColorFormat;
     std::unordered_map<std::string, std::shared_ptr<VInterpolator>>
                                                mInterpolatorCache;
     std::shared_ptr<LOTCompositionData>        mComposition;
@@ -1864,7 +1867,17 @@ void LottieParserImpl::getValue(LottieColor &color)
             val[i++] = value;
         }
     }
-    color = applyReplacements(LottieColor(val[0], val[1], val[2]));
+
+    float red = val[0];
+    float green = val[1];
+    float blue = val[2];
+    if (mParserColorFormat == rlottie::ParserColorFormat::Bgr) {
+        red = val[2];
+        green = val[1];
+        blue = val[0];
+    }
+
+    color = applyReplacements(LottieColor(red, green, blue));
 }
 
 void LottieParserImpl::getValue(LottieGradient &grad)
@@ -2372,9 +2385,10 @@ public:
 LottieParser::~LottieParser() = default;
 LottieParser::LottieParser(
     char *str, const char *dir_path,
-    const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-        &colorReplacements, rlottie::FitzModifier fitzModifier)
-    : d(std::make_unique<LottieParserImpl>(str, dir_path, colorReplacements, fitzModifier))
+    const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements,
+    rlottie::FitzModifier fitzModifier,
+    rlottie::ParserColorFormat colorFormat)
+    : d(std::make_unique<LottieParserImpl>(str, dir_path, colorReplacements, fitzModifier, colorFormat))
 {
     if (d->VerifyType())
         d->parseComposition();

@@ -33,8 +33,9 @@ public:
    bool load(const std::string &filePath, bool cachePolicy);
    bool loadFromData(std::string &&jsonData, const std::string &key,
                      const std::string &resourcePath, bool cachePolicy,
-                     const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-                         &colorReplacements, rlottie::FitzModifier fitzModifier);
+                     const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements,
+                     rlottie::FitzModifier fitzModifier,
+                     rlottie::ParserColorFormat colorFormat);
    std::shared_ptr<LOTModel> model();
 private:  
    std::shared_ptr<LOTModel>    mModel;

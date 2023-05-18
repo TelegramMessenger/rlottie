@@ -28,8 +28,9 @@ class LottieParser {
 public:
     ~LottieParser();
     LottieParser(char *str, const char *dir_path,
-                 const std::vector<std::pair<std::uint32_t, std::uint32_t>>
-                     &colorReplacements = {}, rlottie::FitzModifier fitzModifier = rlottie::FitzModifier::None);
+                 const std::vector<std::pair<std::uint32_t, std::uint32_t>> &colorReplacements = {},
+                 rlottie::FitzModifier fitzModifier = rlottie::FitzModifier::None,
+                 rlottie::ParserColorFormat colorFormat = rlottie::ParserColorFormat::Rgb);
     std::shared_ptr<LOTModel> model();
 private:
    std::unique_ptr<LottieParserImpl>  d;
