@@ -1,12 +1,40 @@
-build
-*.creator*
-*.config
-*.files
-*.includes
-html
-latex
+# Зависимости
+node_modules/
+
+# Сборка
+dist/
+
+# База данных (содержит реальные данные)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Переменные окружения (НИКОГДА не коммитить!)
+.env
+.env.local
+.env.*.local
+
+# Логи
+*.log
+logs/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
 *.swp
-tmp
-.cproject
-.project
-.vs
+*.swo
+
+# IDE
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+# TypeScript кэш
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Temp
+tmp/
+temp/
+.cache/
