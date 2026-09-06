@@ -1255,6 +1255,9 @@ void LOTPolystarItem::updatePath(VPath &path, int frameNo)
 {
     VPointF pos = mData->mPos.value(frameNo);
     float   points = mData->mPointCount.value(frameNo);
+    if (!std::isfinite(points) || points < 1.0f) return;
+    if (points > 1024.0f) points = 1024.0f;
+
     float   innerRadius = mData->mInnerRadius.value(frameNo);
     float   outerRadius = mData->mOuterRadius.value(frameNo);
     float   innerRoundness = mData->mInnerRoundness.value(frameNo);

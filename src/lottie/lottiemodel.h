@@ -989,7 +989,12 @@ public:
     LOTRepeaterData():LOTData(LOTData::Type::Repeater){}
     LOTShapeGroupData *content() const { return mContent ? mContent.get() : nullptr; }
     void setContent(std::shared_ptr<LOTShapeGroupData> content) {mContent = std::move(content);}
-    int maxCopies() const { return int(mMaxCopies);}
+    static constexpr float kMaxRepeaterCopies = 10000.0f;
+    int maxCopies() const {
+        if (!std::isfinite(mMaxCopies) || mMaxCopies <= 0.0f) return 0;
+        if (mMaxCopies > kMaxRepeaterCopies) return int(kMaxRepeaterCopies);
+        return int(mMaxCopies);
+    }
     float copies(int frameNo) const {return mCopies.value(frameNo);}
     float offset(int frameNo) const {return mOffset.value(frameNo);}
 public:
