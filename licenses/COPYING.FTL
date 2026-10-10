@@ -3,7 +3,7 @@
 
                             2006-Jan-27
 
-                    Copyright 1996-2002, 2006 by
+                    Copyright 1996-2021, 2006 by
           David Turner, Robert Wilhelm, and Werner Lemberg
 
 
